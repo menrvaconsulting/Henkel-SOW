@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henkel: Agentic Transformation for Sustainability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Soothing Sage & Stone" -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey, guiding the user from the high-level vision to the tactical details. It starts with a compelling summary (The Vision), introduces the core technology (Meet the AI Agents) through an interactive selector, visualizes the expected outcomes with dynamic charts (The Impact), lays out the execution plan with a process timeline (The Roadmap), and concludes with the concrete deliverables and strategic rationale. This thematic structure, rather than mirroring the SOW's linear format, is chosen for superior usability, allowing users to quickly grasp the project's value proposition and explore its components in a logical, engaging flow. -->
+    <!-- Visualization & Content Choices: 
+        - Project Vision: Goal=Inform -> Method=Large text summary -> Interaction=None -> Justification=Immediately sets the context and captures attention.
+        - AI Agents: Goal=Organize/Inform -> Method=Interactive card selector -> Interaction=Click to reveal details -> Justification=Prevents information overload from a large table and encourages user engagement. (HTML/CSS/JS)
+        - Success Metrics: Goal=Compare/Change -> Method=Two side-by-side bar charts -> Interaction=Hover tooltips, animated loading -> Justification=Visually powerful comparison of baseline vs. target states, making the ROI clear. (Chart.js/Canvas)
+        - Timeline: Goal=Organize/Change -> Method=Visual process timeline -> Interaction=Active state highlighting on scroll -> Justification=More intuitive and digestible representation of project flow than a static table. (HTML/CSS/JS)
+        - Deliverables: Goal=Inform -> Method=Card grid layout -> Interaction=None -> Justification=Clean, scannable presentation of key project outputs. (HTML/CSS)
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item.active .timeline-dot {
+            background-color: #16a34a; /* green-600 */
+            transform: scale(1.5);
+        }
+        .timeline-item.active .timeline-content {
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .agent-button.active {
+            background-color: #16a34a; /* green-600 */
+            color: white;
+            border-color: #16a34a; /* green-600 */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <main class="container mx-auto px-4 py-8 md:py-16">
+
+        <!-- Header Section -->
+        <header class="text-center mb-16 md:mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">Agentic Transformation for <br><span class="text-green-700">Sustainability Excellence</span></h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">An initiative to pioneer the future of sustainability in global manufacturing for Henkel India by deploying custom AI agents that automate, optimize, and redefine workflows.</p>
+        </header>
+
+        <!-- Meet the AI Agents Section -->
+        <section id="agents" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Meet the AI Agents</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">This project introduces a suite of intelligent agents, each designed for a specific sustainability function. Click on an agent to learn about its role in transforming Henkel's operations.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <!-- Agent buttons will be injected here -->
+            </div>
+            <div id="agent-details" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg transition-all duration-500 min-h-[250px] flex flex-col justify-center">
+                <!-- Agent details will be displayed here -->
+            </div>
+        </section>
+
+        <!-- The Impact Section (Metrics) -->
+        <section id="impact" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">The Projected Impact</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">This transformation is designed to deliver quantifiable improvements in key performance indicators. The charts below visualize the targeted gains in efficiency and workload reduction.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-center mb-4">Reporting Turnaround Time</h3>
+                    <div class="chart-container">
+                        <canvas id="reportingChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-center mb-4">Manual Sustainability Workload</h3>
+                    <div class="chart-container">
+                        <canvas id="workloadChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Roadmap Section (Timeline) -->
+        <section id="roadmap" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Project Roadmap</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">A phased, 20-week approach ensures a smooth and effective deployment, from initial discovery to full team handover and scaling.</p>
+            </div>
+            <div class="relative">
+                 <div class="absolute left-1/2 -translate-x-1/2 top-0 h-full w-0.5 bg-gray-300"></div>
+                 <div id="timeline-container" class="space-y-12">
+                    <!-- Timeline items will be injected here -->
+                 </div>
+            </div>
+        </section>
+        
+        <!-- Key Deliverables Section -->
+        <section id="deliverables" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Key Deliverables</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">The project will produce a set of tangible assets and tools that provide immediate and long-term value to Henkel.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                 <!-- Deliverable cards will be injected here -->
+            </div>
+        </section>
+
+        <!-- Why This Will Work Section -->
+        <section id="why" class="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold">A Strategy Built for Success</h2>
+                <p class="mt-2 text-gray-600 max-w-2xl mx-auto">Our approach is grounded in proven principles to ensure a seamless integration and a future-proof foundation for Henkel.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-700 mb-4 text-3xl">🎯</div>
+                    <h3 class="font-semibold text-lg mb-2">Custom-Trained AI</h3>
+                    <p class="text-gray-600">Models built specifically for Henkel's data, goals, and constraints—not off-the-shelf tools.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-700 mb-4 text-3xl">👥</div>
+                    <h3 class="font-semibold text-lg mb-2">Human-in-the-Loop</h3>
+                    <p class="text-gray-600">An agent oversight model that keeps humans in charge, improving decision quality and trust.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-700 mb-4 text-3xl">⚙️</div>
+                    <h3 class="font-semibold text-lg mb-2">Seamless Integration</h3>
+                    <p class="text-gray-600">Designed to work within Henkel's existing IT and plant setup, requiring no infrastructure overhaul.</p>
+                </div>
+                 <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-700 mb-4 text-3xl">📈</div>
+                    <h3 class="font-semibold text-lg mb-2">Proven & Future-Proof</h3>
+                    <p class="text-gray-600">Modeled on industry-leading practices to lay a foundation for scaling globally.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 bg-gray-200">
+        <p class="text-gray-600">Prepared by AreteDom – Powered by Perceive Now AI platform</p>
+        <p class="text-sm text-gray-500 mt-1">Project Proposal Date: June 2025</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const agentData = [
+                { name: 'Emissio', task: 'Real-time Scope 1/2 monitoring and anomaly detection.', tech: 'LLM + IoT sensor integration.', customization: "Trained on Henkel’s energy + emissions data." },
+                { name: 'GreenChem', task: 'Identifying viable low-impact material substitutions.', tech: 'NLP + chemistry DB integration.', customization: 'Aligned with Henkel formulation criteria.' },
+                { name: 'AuditGen', task: 'Auto-generation of regulatory compliance reports (CPCB, ISO).', tech: 'NLP + template engine.', customization: 'Uses Henkel SOP and Indian/Global regs.' },
+                { name: 'SupplyScan', task: 'Supplier ESG risk analysis and summary.', tech: 'Web scraping + ESG DB API.', customization: 'Filters Indian/Global suppliers.' },
+                { name: 'EnergyBot', task: 'Production-energy KPI optimization per product line.', tech: 'ML regression + agent tuning.', customization: 'Tailored to Henkel’s equipment and energy data.' }
+            ];
+
+            const timelineData = [
+                { 'phase': 1, 'title': 'Discovery & Data', 'duration': '5 weeks', 'activities': 'Workflow mapping, data access, stakeholder alignment.' },
+                { 'phase': 2, 'title': 'Prototype Agents', 'duration': '4 weeks', 'activities': 'Develop 3 agents, train on local data.' },
+                { 'phase': 3, 'title': 'Deployment & Dashboard', 'duration': '4 weeks', 'activities': 'Deploy agents, build dashboard, QA.' },
+                { 'phase': 4, 'title': 'Feedback & Retraining', 'duration': '4 weeks', 'activities': 'Collect usage data, fine-tune agent behavior.' },
+                { 'phase': 5, 'title': 'Scale & Handover', 'duration': '3 weeks', 'activities': 'Train Henkel staff, finalize SOPs, roadmap for future use of Perceive Now platform.' }
+            ];
+            
+            const deliverablesData = [
+                { title: 'Agentic Workflow Map', description: 'Detailed mapping of sustainability tasks suited for AI automation.' },
+                { title: '5 AI Agent Prototypes', description: 'Agents for emissions monitoring, material substitution, reporting, and compliance.' },
+                { title: 'Fine-Tuned AI Model', description: 'A Henkel-trained model on plant data and SOPs, becoming a strategic IP asset.' },
+                { title: 'Unified Dashboard', description: 'Visualize agent outputs, audit trails, and KPI progress for executive insight.' },
+                { title: 'Agent Management Console', description: 'View, control, and refine agents per workflow for operational control.' },
+                { title: 'Training & Handover', description: 'Onboarding sessions, SOPs, and AI literacy for the plant team.' },
+            ];
+
+
+            const agentButtonsContainer = document.querySelector('.flex-wrap');
+            const agentDetailsContainer = document.getElementById('agent-details');
+
+            function displayAgent(agent) {
+                agentDetailsContainer.innerHTML = `
+                    <h3 class="text-2xl font-bold text-green-700 mb-3">${agent.name}</h3>
+                    <p class="text-lg text-gray-700 mb-4"><strong class="font-semibold">Automated Task:</strong> ${agent.task}</p>
+                    <div class="text-sm text-gray-500">
+                        <p><strong class="font-semibold">Technology:</strong> ${agent.tech}</p>
+                        <p><strong class="font-semibold">Customization:</strong> ${agent.customization}</p>
+                    </div>`;
+            }
+            
+            agentData.forEach((agent, index) => {
+                const button = document.createElement('button');
+                button.textContent = agent.name;
+                button.classList.add('agent-button', 'px-4', 'py-2', 'font-semibold', 'border-2', 'border-gray-300', 'rounded-full', 'transition-all', 'duration-300', 'hover:bg-green-500', 'hover:text-white', 'hover:border-green-500');
+                button.addEventListener('click', () => {
+                    displayAgent(agent);
+                    document.querySelectorAll('.agent-button').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+                agentButtonsContainer.appendChild(button);
+
+                if (index === 0) {
+                    displayAgent(agent);
+                    button.classList.add('active');
+                }
+            });
+            
+            const reportingCtx = document.getElementById('reportingChart').getContext('2d');
+            new Chart(reportingCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Baseline', 'Target'],
+                    datasets: [{
+                        label: 'Days',
+                        data: [7, 2],
+                        backgroundColor: ['#fca5a5', '#4ade80'],
+                        borderColor: ['#f87171', '#22c55e'],
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, grace: '5%' } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            const workloadCtx = document.getElementById('workloadChart').getContext('2d');
+            new Chart(workloadCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Baseline', 'Target'],
+                    datasets: [{
+                        label: 'Hours / Month',
+                        data: [60, 15],
+                        backgroundColor: ['#fca5a5', '#4ade80'],
+                        borderColor: ['#f87171', '#22c55e'],
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, max: 70 } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+            
+            const timelineContainer = document.getElementById('timeline-container');
+            timelineData.forEach((item, index) => {
+                const alignmentClass = index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8 md:text-right';
+                const dotAlignment = index % 2 === 0 ? 'md:-right-2' : 'md:-left-2';
+
+                const timelineElement = document.createElement('div');
+                timelineElement.classList.add('timeline-item', 'md:w-1/2', 'mx-auto', 'md:mx-0', 'transition-all', 'duration-500');
+                if (index % 2 === 0) {
+                     timelineElement.classList.add('md:mr-auto');
+                } else {
+                     timelineElement.classList.add('md:ml-auto');
+                }
+
+                timelineElement.innerHTML = `
+                    <div class="relative ${alignmentClass}">
+                        <div class="timeline-dot absolute w-4 h-4 bg-gray-400 rounded-full top-1 transition-all duration-300 left-1/2 -translate-x-1/2 ${dotAlignment}"></div>
+                        <div class="timeline-content bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                             <span class="text-sm font-semibold text-green-600">${item.duration}</span>
+                             <h3 class="text-xl font-bold mt-1">Phase ${item.phase}: ${item.title}</h3>
+                             <p class="text-gray-600 mt-2">${item.activities}</p>
+                        </div>
+                    </div>
+                `;
+                timelineContainer.appendChild(timelineElement);
+            });
+            
+            const deliverablesContainer = document.querySelector('#deliverables .grid');
+            deliverablesData.forEach(item => {
+                const card = document.createElement('div');
+                card.classList.add('bg-white', 'p-6', 'rounded-xl', 'shadow-md', 'hover:shadow-xl', 'transition-shadow', 'duration-300');
+                card.innerHTML = `
+                    <h3 class="font-bold text-xl text-green-700 mb-2">${item.title}</h3>
+                    <p class="text-gray-600">${item.description}</p>
+                `;
+                deliverablesContainer.appendChild(card);
+            });
+            
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.5 });
+            timelineItems.forEach(item => observer.observe(item));
+        });
+    </script>
+</body>
+</html>
