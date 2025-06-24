@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henkel | AI-Driven Sustainability Transformation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+       .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+           .chart-container {
+                height: 350px;
+            }
+        }
+       .flowchart-line {
+            width: 2px;
+            background-color: #d1d5db;
+            flex-grow: 1;
+        }
+       .flowchart-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+       .flowchart-icon {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+       .flowchart-content {
+            flex-grow: 1;
+        }
+        .conclusion-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .conclusion-icon {
+            font-size: 2rem;
+            line-height: 1;
+            margin-right: 1rem;
+            color: #003f5c; /* Primary blue for icons */
+            width: 2.5rem;
+            flex-shrink: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-[#003f5c] text-white p-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-black mb-2">Transforming Sustainability with Agentic AI</h1>
+        <p class="text-xl md:text-2xl font-light">A Strategic Framework for Henkel India</p>
+        <p class="text-sm mt-4">Powered by Menrva Consulting & Perceive Now</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="principles" class="mb-16 text-center">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-8">Built on Three Core Principles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-[#2f4b7c] mb-2">ROI-Driven</h3>
+                    <p class="text-gray-600">Positioning sustainability as a strategic driver of financial performance and operational excellence.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-[#2f4b7c] mb-2">Report-Centric</h3>
+                    <p class="text-gray-600">Delivering narrative-rich, actionable intelligence to guide C-suite and plant-level decisions.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-[#2f4b7c] mb-2">Globally Replicable</h3>
+                    <p class="text-gray-600">Engineering a scalable, standardized model for deployment across Henkel's worldwide operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="mb-16 bg-white p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">Projected 90-Day Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <h3 class="text-xl font-bold text-[#665191] mb-4">Energy Savings</h3>
+                    <div class="chart-container mx-auto h-64 md:h-72">
+                        <canvas id="energySavingsChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700">A projected <strong>10-12% reduction</strong> in energy consumption through AI-driven optimization.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#d45087] mb-4">Carbon Reduction</h3>
+                    <div class="chart-container mx-auto h-64 md:h-72">
+                        <canvas id="carbonReductionChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700">An estimated <strong>8-10% decrease</strong> in carbon footprint by optimizing processes and fuel use.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#ff7c43] mb-4">Labor Efficiency</h3>
+                    <div class="text-center">
+                        <p class="text-6xl md:text-7xl font-black text-[#ff7c43] mt-16">>60</p>
+                        <p class="text-xl font-bold text-gray-700">Hours Saved / Month</p>
+                    </div>
+                    <p class="mt-12 text-gray-700">Unlocking significant human capital by automating over <strong>70% of manual reporting tasks.</strong></p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="framework" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-12">The 10-Step Transformation Journey</h2>
+            <div class="flex">
+                <div class="hidden md:flex flex-col items-center mr-8">
+                     <div class="flowchart-line h-8"></div>
+                     <div class="flowchart-icon bg-[#003f5c]">1</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#2f4b7c]">2</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#665191]">3</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#a05195]">4</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#d45087]">5</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#f95d6a]">6</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#ff7c43]">7</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#ffa600]">8</div>
+                     <div class="flowchart-line"></div>
+                      <div class="flowchart-icon bg-[#003f5c]">9</div>
+                     <div class="flowchart-line"></div>
+                     <div class="flowchart-icon bg-[#2f4b7c]">10</div>
+                     <div class="flowchart-line h-8"></div>
+                </div>
+                <div class="w-full space-y-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#003f5c]">
+                        <h3 class="text-xl font-bold text-[#003f5c]">1. Site-Level Opportunity Radar</h3>
+                        <p class="text-gray-600 mt-2">Identifies 15-20 specific improvement levers across energy, waste, and emissions, with potential for up to <strong>12% utility cost savings.</strong></p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#2f4b7c]">
+                        <h3 class="text-xl font-bold text-[#2f4b7c]">2. Emissions Intelligence</h3>
+                        <p class="text-gray-600 mt-2">Delivers real-time Scope 1/2 analysis with <strong>&lt;3% deviation</strong> from auditor values and predicts emission spikes <strong>24-48 hours</strong> in advance.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#2f4b7c]">
+                        <h3 class="text-xl font-bold text-[#2f4b7c]">2.1. Pain Point Mapping</h3>
+                        <p class="text-gray-600 mt-2">Pinpoints 10-12 core operational inefficiencies, reducing unnecessary labor time by up to <strong>40%.</strong></p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#665191]">
+                        <h3 class="text-xl font-bold text-[#665191]">3. Circularity & Substitution</h3>
+                        <p class="text-gray-600 mt-2">Models packaging redesigns to improve recyclability by up to <strong>30%</strong> and identifies 5-7 viable low-impact material substitutes.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#a05195]">
+                        <h3 class="text-xl font-bold text-[#a05195]">4. Energy Efficiency Intelligence</h3>
+                        <p class="text-gray-600 mt-2">Provides <strong>95% data granularity</strong> on energy use, identifying 8-12% monthly power cost savings and reducing peak load by 15-18%.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#d45087]">
+                        <h3 class="text-xl font-bold text-[#d45087]">5. Supplier ESG Risk Intelligence</h3>
+                        <p class="text-gray-600 mt-2">Performs deep risk analysis and ESG scoring for <strong>100% of critical suppliers</strong> and 80% of Tier 2 vendors.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#f95d6a]">
+                        <h3 class="text-xl font-bold text-[#f95d6a]">6. Auto-Generated Reporting</h3>
+                        <p class="text-gray-600 mt-2">Achieves <strong>100% automation</strong> of CPCB & ISO 14001 reports, reducing manual compliance time by over <strong>70%</strong>.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#ff7c43]">
+                        <h3 class="text-xl font-bold text-[#ff7c43]">7. Executive Oversight</h3>
+                        <p class="text-gray-600 mt-2">Transforms dashboards into narrative-rich reports for the C-suite, framing ESG decisions with clear ROI and compliance data.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#ffa600]">
+                        <h3 class="text-xl font-bold text-[#ffa600]">8. Human-in-the-Loop Supervision</h3>
+                        <p class="text-gray-600 mt-2">Trains on-site teams to supervise, tune, and audit AI agents independently, ensuring long-term self-sufficiency.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#003f5c]">
+                        <h3 class="text-xl font-bold text-[#003f5c]">9. ROI & Impact Reports</h3>
+                        <p class="text-gray-600 mt-2">Delivers tangible, quantitative proof of emissions saved, energy reduced, and labor unlocked within <strong>90 days</strong>.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#2f4b7c]">
+                        <h3 class="text-xl font-bold text-[#2f4b7c]">10. Continuous Monitoring</h3>
+                        <p class="text-gray-600 mt-2">Enables always-on performance tracking with adaptive intelligence that adjusts benchmarks and forecasts in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deep-dive" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-12">A Deeper Look at Key Impact Areas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#a05195] mb-4">Energy: Peak Load Reduction</h3>
+                    <div class="chart-container">
+                        <canvas id="peakLoadChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700">By correlating energy profiles with production forecasts, the AI agent identifies opportunities to reschedule processes, cutting peak-hour grid demand by an estimated <strong>15-18%</strong> and reducing costly peak tariffs.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#f95d6a] mb-4">Compliance: Reporting Automation</h3>
+                    <div class="chart-container">
+                        <canvas id="reportingTimeChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700">The AuditGen agent automates data collection and formatting for regulatory reports, drastically cutting manual preparation time by over 70% and ensuring teams are always ready for surprise audits.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#d45087] mb-4">Supply Chain: ESG Risk Coverage</h3>
+                    <div class="chart-container">
+                        <canvas id="supplierRiskChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700">The framework provides a comprehensive view of supply chain integrity by scoring 100% of critical suppliers and 80% of Tier 2 vendors across 12 distinct ESG dimensions, flagging risks automatically.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#665191] mb-4">Circularity: Packaging Recyclability</h3>
+                     <div class="chart-container">
+                        <canvas id="packagingRecyclabilityChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-700">The GreenChem agent models material and design changes to improve packaging recyclability by up to <strong>30%</strong>, often at an equivalent or reduced cost, supporting a circular economy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="mb-12 bg-white p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">Conclusion: A Blueprint for Future-Ready Sustainability</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <div class="conclusion-item">
+                    <div class="conclusion-icon">⚙️</div>
+                    <p class="text-gray-700"><strong>Proactive, Data-Driven Sustainability:</strong> Leveraging advanced AI for a continuously optimizing system.</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-icon">🎯</div>
+                    <p class="text-gray-700"><strong>Strategic Principles:</strong> Report-centric, ROI-driven, and built for global replication.</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-icon">📈</div>
+                    <p class="text-gray-700"><strong>Quantifiable Impact:</strong> Delivering clear ROI with significant energy, carbon, and labor savings.</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-icon">👁️</div>
+                    <p class="text-gray-700"><strong>Enhanced Visibility & Control:</strong> Real-time monitoring, predictive analytics, automated compliance, and intelligent risk management.</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-icon">💪</div>
+                    <p class="text-gray-700"><strong>Empowered Internal Teams:</strong> Human-in-the-loop supervision fosters long-term self-sufficiency.</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-icon">🏆</div>
+                    <p class="text-gray-700"><strong>Defendable ESG Narrative:</strong> Building reputation, attracting investment, and securing market leadership.</p>
+                </div>
+                <div class="conclusion-item md:col-span-2">
+                    <div class="conclusion-icon">🌱</div>
+                    <p class="text-gray-700"><strong>Future-Ready Foundation:</strong> Positioning Henkel to adapt and thrive in an evolving global landscape.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#003f5c] text-white p-6 text-center text-sm">
+        <p>A Future-Ready Sustainability Model for Henkel India</p>
+        <p class="mt-2 opacity-75">&copy; 2025 Menrva Consulting & Perceive Now. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (str, maxWidth) => {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = words[0];
+
+                for (let i = 1; i < words.length; i++) {
+                    if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                        lines.push(currentLine);
+                        currentLine = words[i];
+                    } else {
+                        currentLine += ' ' + words[i];
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const sharedChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const colors = {
+                blue: '#003f5c',
+                purple: '#665191',
+                pink: '#d45087',
+                red: '#f95d6a',
+                orange: '#ff7c43',
+                yellow: '#ffa600',
+                gray: '#e5e7eb'
+            };
+            
+            new Chart(document.getElementById('energySavingsChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Energy Saved', 'Remaining Consumption'],
+                    datasets: [{
+                        data: [11, 89],
+                        backgroundColor: [colors.purple, colors.gray],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                    }]
+                },
+                options: { ...sharedChartOptions, cutout: '70%' }
+            });
+
+            new Chart(document.getElementById('carbonReductionChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Carbon Reduced', 'Remaining Emissions'],
+                    datasets: [{
+                        data: [9, 91],
+                        backgroundColor: [colors.pink, colors.gray],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                    }]
+                },
+                options: { ...sharedChartOptions, cutout: '70%' }
+            });
+
+            new Chart(document.getElementById('peakLoadChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Before AI Optimization', 'After AI Optimization'],
+                    datasets: [{
+                        label: 'Peak Grid Load (kW)',
+                        data: [100, 83],
+                        backgroundColor: [colors.gray, colors.purple],
+                        borderColor: [colors.gray, colors.purple],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Relative Peak Load' }
+                        }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('reportingTimeChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Manual Reporting', 'Automated Reporting'],
+                    datasets: [{
+                        label: 'Hours per Month',
+                        data: [80, 24],
+                        backgroundColor: [colors.gray, colors.red],
+                        borderColor: [colors.gray, colors.red],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Time Spent (Relative Hours)' }
+                        }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('supplierRiskChart'), {
+                type: 'radar',
+                data: {
+                    labels: wrapLabel('Critical Supplier Coverage, Tier 2 Supplier Coverage, EHS Certification Check, Litigation Monitoring, Environmental Penalty Check', 20),
+                    datasets: [{
+                        label: 'ESG Risk Coverage (%)',
+                        data: [100, 80, 95, 90, 92],
+                        fill: true,
+                        backgroundColor: 'rgba(212, 80, 135, 0.2)',
+                        borderColor: colors.pink,
+                        pointBackgroundColor: colors.pink,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: colors.pink
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    plugins: {
+                        ...sharedChartOptions.plugins,
+                        legend: {
+                           display: true,
+                           position: 'bottom',
+                           labels: {
+                               boxWidth: 20
+                           }
+                        }
+                    },
+                     scales: {
+                        r: {
+                            angleLines: { display: false },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            pointLabels: {
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+             new Chart(document.getElementById('packagingRecyclabilityChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Current State', 'Potential w/ AI Insights'],
+                    datasets: [{
+                        label: 'Recyclability Index',
+                        data: [65, 85],
+                        backgroundColor: [colors.gray, colors.blue],
+                        borderColor: [colors.gray, colors.blue],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: 'Recyclability (%)' }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
